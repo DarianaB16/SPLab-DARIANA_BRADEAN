@@ -2,24 +2,26 @@ package ro.info.uvt.tema1;
 
 public class Paragraph implements Element {
     private String text;
+    private AlignStrategy alignStrategy; // strategie opțională
 
     public Paragraph(String text) {
         this.text = text;
     }
 
-    @Override
-    public void print() {
-        System.out.println("Paragraph: " + text);
+    public String getText() {
+        return text;
+    }
+
+    public void setAlignStrategy(AlignStrategy alignStrategy) {
+        this.alignStrategy = alignStrategy;
     }
 
     @Override
-    public void add(Element element) {}
-
-    @Override
-    public void remove(Element element) {}
-
-    @Override
-    public Element get(int index) {
-        return null;
+    public void print() {
+        if (alignStrategy != null) {
+            alignStrategy.render(this);
+        } else {
+            System.out.println("Paragraph: " + text);
+        }
     }
 }
