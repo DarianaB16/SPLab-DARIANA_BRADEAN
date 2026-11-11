@@ -2,7 +2,7 @@ package ro.info.uvt.tema1;
 
 public class Paragraph implements Element {
     private String text;
-    private AlignStrategy alignStrategy; // strategie opțională
+    private AlignStrategy alignStrategy;
 
     public Paragraph(String text) {
         this.text = text;
@@ -23,5 +23,21 @@ public class Paragraph implements Element {
         } else {
             System.out.println("Paragraph: " + text);
         }
+    }
+
+    @Override
+    public void add(Element element) {}
+
+    @Override
+    public void remove(Element element) {}
+
+    @Override
+    public Element get(int index) {
+        return null;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitParagraph(this);
     }
 }

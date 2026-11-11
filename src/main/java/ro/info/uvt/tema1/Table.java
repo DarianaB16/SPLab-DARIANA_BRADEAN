@@ -1,15 +1,10 @@
 package ro.info.uvt.tema1;
 
-public class Table implements Element {
-    private String title;
-
-    public Table(String title) {
-        this.title = title;
-    }
+public class TableOfContents implements Element {
 
     @Override
     public void print() {
-        System.out.println("Table with title: " + title);
+        System.out.println("Table of Contents");
     }
 
     @Override
@@ -21,5 +16,10 @@ public class Table implements Element {
     @Override
     public Element get(int index) {
         return null;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitTableOfContents(this);
     }
 }

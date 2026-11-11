@@ -24,17 +24,18 @@ public class Image implements Element {
     }
 
     @Override
-    public void add(Element element) {
-        // Frunză în Pattern-ul Composite: nu conține sub-elemente
-    }
+    public void add(Element element) {}
 
     @Override
-    public void remove(Element element) {
-        // Frunză în Pattern-ul Composite: nu conține sub-elemente
-    }
+    public void remove(Element element) {}
 
     @Override
     public Element get(int index) {
         return null;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitImage(this);
     }
 }

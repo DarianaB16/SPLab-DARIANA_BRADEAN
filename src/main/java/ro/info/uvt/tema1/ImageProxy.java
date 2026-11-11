@@ -19,4 +19,20 @@ public class ImageProxy implements Element {
     public void print() {
         loadImage().print();
     }
+
+    @Override
+    public void add(Element element) {}
+
+    @Override
+    public void remove(Element element) {}
+
+    @Override
+    public Element get(int index) {
+        return null;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitImageProxy(this);
+    }
 }

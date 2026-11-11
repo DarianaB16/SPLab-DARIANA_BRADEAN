@@ -3,31 +3,37 @@ package ro.info.uvt.tema1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book extends Section {
+public class Book {
+    private String title;
     private List<Author> authors = new ArrayList<>();
+    private List<Element> elements = new ArrayList<>();
 
     public Book(String title) {
-        super(title);
+        this.title = title;
     }
 
     public void addAuthor(Author author) {
         authors.add(author);
     }
 
-    public void addContent(Element element) {
-        add(element);
+    public void add(Element element) {
+        elements.add(element);
     }
 
-    @Override
     public void print() {
-        System.out.println("Book: " + title + "\n");
-        System.out.println("Authors:");
+        System.out.println("Book: " + title);
         for (Author author : authors) {
             author.print();
         }
-        System.out.println();
-        for (Element child : children) {
-            child.print();
+        for (Element element : elements) {
+            element.print();
+        }
+    }
+
+    public void accept(Visitor visitor) {
+        visitor.visitBook(this);
+        for (Element element : elements) {
+            element.accept(visitor);
         }
     }
 }
