@@ -1,22 +1,29 @@
 package ro.info.uvt.tema1;
 
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Section implements Element {
-    protected String title;
-    protected List<Element> children = new ArrayList<>();
+@Entity
+public class Section extends BaseElement {
+
+    private String title;
+
+    @OneToMany(targetEntity = BaseElement.class, cascade = CascadeType.ALL)
+    private List<Element> children = new ArrayList<>();
+
+    public Section() {}
 
     public Section(String title) {
         this.title = title;
     }
 
-    @Override
-    public void print() {
-        System.out.println(title);
-        for (Element child : children) {
-            child.print();
-        }
+    public String getTitle() {
+        return title;
+    }
+
+    public List<Element> getChildren() {
+        return children;
     }
 
     @Override
@@ -32,6 +39,14 @@ public class Section implements Element {
     @Override
     public Element get(int index) {
         return children.get(index);
+    }
+
+    @Override
+    public void print() {
+        System.out.println(title);
+        for (Element child : children) {
+            child.print();
+        }
     }
 
     @Override

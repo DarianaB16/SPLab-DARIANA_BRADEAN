@@ -1,26 +1,20 @@
 package ro.info.uvt.tema1;
 
-import java.util.concurrent.TimeUnit;
+import jakarta.persistence.Entity;
 
-public class Image implements Element {
+@Entity
+public class Image extends BaseElement {
+
     private String url;
+
+    public Image() {}
 
     public Image(String url) {
         this.url = url;
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public String getUrl() {
         return url;
-    }
-
-    @Override
-    public void print() {
-        System.out.println("Image: " + url);
     }
 
     @Override
@@ -32,6 +26,11 @@ public class Image implements Element {
     @Override
     public Element get(int index) {
         return null;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("Image with name: " + url);
     }
 
     @Override

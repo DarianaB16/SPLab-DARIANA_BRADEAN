@@ -1,10 +1,20 @@
 package ro.info.uvt.tema1;
 
-public class TableOfContents implements Element {
+import jakarta.persistence.Entity;
 
-    @Override
-    public void print() {
-        System.out.println("Table of Contents");
+@Entity
+public class Table extends BaseElement {
+
+    private String title;
+
+    public Table() {}
+
+    public Table(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     @Override
@@ -19,7 +29,12 @@ public class TableOfContents implements Element {
     }
 
     @Override
+    public void print() {
+        System.out.println("Table: " + title);
+    }
+
+    @Override
     public void accept(Visitor visitor) {
-        visitor.visitTableOfContents(this);
+        visitor.visitTable(this);
     }
 }

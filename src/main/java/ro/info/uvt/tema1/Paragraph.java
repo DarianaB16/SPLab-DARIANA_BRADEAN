@@ -1,8 +1,13 @@
 package ro.info.uvt.tema1;
 
-public class Paragraph implements Element {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Paragraph extends BaseElement {
+
     private String text;
-    private AlignStrategy alignStrategy;
+
+    public Paragraph() {}
 
     public Paragraph(String text) {
         this.text = text;
@@ -10,19 +15,6 @@ public class Paragraph implements Element {
 
     public String getText() {
         return text;
-    }
-
-    public void setAlignStrategy(AlignStrategy alignStrategy) {
-        this.alignStrategy = alignStrategy;
-    }
-
-    @Override
-    public void print() {
-        if (alignStrategy != null) {
-            alignStrategy.render(this);
-        } else {
-            System.out.println("Paragraph: " + text);
-        }
     }
 
     @Override
@@ -34,6 +26,11 @@ public class Paragraph implements Element {
     @Override
     public Element get(int index) {
         return null;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("Paragraph: " + text);
     }
 
     @Override

@@ -1,11 +1,24 @@
 package ro.info.uvt.tema1;
 
-public class ImageProxy implements Element {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
+
+@Entity
+public class ImageProxy extends BaseElement {
+
     private String url;
+
+    @Transient
     private Image realImage;
+
+    public ImageProxy() {}
 
     public ImageProxy(String url) {
         this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     private Image loadImage() {
@@ -13,11 +26,6 @@ public class ImageProxy implements Element {
             realImage = new Image(url);
         }
         return realImage;
-    }
-
-    @Override
-    public void print() {
-        loadImage().print();
     }
 
     @Override
@@ -29,6 +37,11 @@ public class ImageProxy implements Element {
     @Override
     public Element get(int index) {
         return null;
+    }
+
+    @Override
+    public void print() {
+        loadImage().print();
     }
 
     @Override
